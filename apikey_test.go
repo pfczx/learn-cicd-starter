@@ -1,10 +1,11 @@
 package main
 
 import (
-	"testing"
-	"net/http"
 	"github.com/bootdotdev/learn-cicd-starter/internal/auth"
+	"net/http"
+	"testing"
 )
+
 func TestGetAPIKey_ValidHeader(t *testing.T) {
 	headers := http.Header{}
 	headers.Set("Authorization", "ApiKey my-secret-key")
