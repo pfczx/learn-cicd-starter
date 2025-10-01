@@ -1,4 +1,4 @@
-![coverage](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg)
+![coverage](https://github.com/pfczx/learn-cicd-starter/actions/workflows/ci.yml/badge.svg)
 
 
 
