@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -16,7 +17,10 @@ import (
 
 	_ "github.com/tursodatabase/libsql-client-go/libsql"
 )
-
+func unused() {
+    // this function does nothing
+    // and is called nowhere
+}
 type apiConfig struct {
 	DB *database.Queries
 }
@@ -61,7 +65,7 @@ func main() {
 		AllowedHeaders:   []string{"*"},
 		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: false,
-		MaxAge:           300,
+		MaxAge:           303,
 	}))
 
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
@@ -91,6 +95,9 @@ func main() {
 	srv := &http.Server{
 		Addr:    ":" + port,
 		Handler: router,
+		ReadHeaderTimeout: 10 * time.Second,
+    ReadTimeout:       15 * time.Second,
+    WriteTimeout:      15 * time.Second, 
 	}
 
 	log.Printf("Serving on port: %s\n", port)
