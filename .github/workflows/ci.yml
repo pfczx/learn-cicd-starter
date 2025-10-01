@@ -17,7 +17,7 @@ jobs:
         run: go test -cover ./...
 
       - name: Style 
-        run: test -z $(go fmt ./...)
+        run: test -z $(go fmt ./...) && echo $?
 
       - name: Force Failure
         run: (exit 0)
