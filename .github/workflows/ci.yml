@@ -16,9 +16,14 @@ jobs:
       - name: Tests
         run: go test -cover ./...
 
-      - name: Style 
-        run: test -z $(go fmt ./...) && echo $?
-
       - name: Force Failure
         run: (exit 0)
+
+    Style:
+      name: Style
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Style
+      - run: test -z $(go fmt ./...) && echo $?
       
