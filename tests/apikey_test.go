@@ -16,5 +16,4 @@ func TestGetAPIKey_ValidHeader(t *testing.T) {
 	if apiKey != "my-secret-key" {
 		t.Errorf("Expected 'my-secret-key', got '%s'", apiKey)
 	}
-	t.Errorf("err")
 }
