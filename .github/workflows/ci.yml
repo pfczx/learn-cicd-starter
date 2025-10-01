@@ -39,8 +39,3 @@ jobs:
       - uses: dominikh/staticcheck-action@v1
         with:
           version: "latest"
-  Sec:
-    name: Sec
-    runs-on: ubuntu-latest
-    env:
-      GO111MODULE: on
