@@ -31,4 +31,18 @@ jobs:
           fetch-depth: 1
       - uses: dominikh/staticcheck-action@v1
         with:
-          version: "latest" 
+          version: "latest"
+  Sec:
+    name: Sec
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+      - name: Run Gosec Security Scanner
+        uses: securego/gosec@master
+        with:
+          args: ./...
+
