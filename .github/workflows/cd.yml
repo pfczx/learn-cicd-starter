@@ -41,22 +41,24 @@ jobs:
 
       - name: buil_script
         run: ./scripts/buildprod.sh
-      # Setup Google Cloud
+      # 🔑 Najpierw autoryzacja service account
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # Instalacja i konfiguracja gcloud CLI
       - name: Setup Google Cloud
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: notely-473917
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
-      # Weryfikacja czy konto jest aktywne
       - name: Verify auth
         run: gcloud auth list
 
-      # Autoryzacja Dockera do Artifact Registry
       - name: Authenticate Docker for Artifact Registry
         run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 
-      # Build i push do Artifact Registry
       - name: Build and push to Artifact Registry
         run: |
           gcloud builds submit \
